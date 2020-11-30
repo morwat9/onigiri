@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.get("/", adminController.getRecipeList);
 
+router.post("/category", adminController.getCategory)
+
 router.post("/add-recipe", adminController.postRecipe);
 
 router.get("/:recipeId", adminController.getRecipe)

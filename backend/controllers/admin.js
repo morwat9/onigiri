@@ -11,13 +11,29 @@ exports.getRecipeList = async (req, res) => {
   }
 };
 
+exports.getCategory = async (req, res) => {
+  // getCategory gets all recipes of a certain category
+  // TODO: ERROR HANDLING ON THIS PAGE NEEDS WORK
+  try {
+    const category = req.body.category;
+    recipes = await Recipe.find({ category: category, active: true });
+    if (recipes == null) {
+      res.status(400).json({ error: "No recipes found." });
+    } else {
+      res.status(200).send(recipes);
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ error: "Invalid Request" });
+  }
+};
+
 exports.getRecipe = async (req, res) => {
   // getRecipe() finds a specific recipe by the ID in the req.params or the URL Parameters
   // example: http://localhost:8080/5fadbc2ff8f1043c9ea0921e
   try {
     const recipeId = req.params.recipeId;
     recipe = await Recipe.findOne({ _id: recipeId, active: true });
-    console.log(recipe);
     if (recipe == null) {
       // Trips if deactivated recipe is found
       res.status(400).json({ error: "Recipe Not Found" });
@@ -75,7 +91,7 @@ exports.updateRecipe = async (req, res) => {
   } catch (err) {
     // Fires if data isn't complete or parsing errors in the data
     console.log(err);
-    res.status(500).json({error: "Invalid Reqest"});
+    res.status(500).json({ error: "Invalid Reqest" });
   }
 };
 
@@ -91,6 +107,6 @@ exports.deactivateRecipe = async (req, res) => {
     res.status(200).send("Recipe Deleted: " + recipe);
   } catch (err) {
     console.log(err);
-    res.status(500).json({error: "Invalid Request"})
+    res.status(500).json({ error: "Invalid Request" });
   }
 };
