@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
 
-function Breakfast(){
+function Dinner(){
     const [recipes, setRecipes] = useState([]) 
     useEffect(() => {
-        axios.post('http://localhost:8080/category', { category: "breakfast"})
+        axios.post('http://localhost:8080/category', { category: "dinner"})
             .then((recipes) => setRecipes(recipes.data))
             .catch((err) => console.log(err))
     }, [])
@@ -30,4 +30,4 @@ function Breakfast(){
     )
 }
 
-export default Breakfast
+export default Dinner

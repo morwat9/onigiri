@@ -2,3 +2,11 @@
     margin: 1rem;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.img {
+    width: 200px;
+    height: 350px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
