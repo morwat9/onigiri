@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Breakfast from './pages/Breakfast'
 import Lunch from './pages/Lunch'
 import Dinner from './pages/Dinner'
+import AddRecipe from './pages/AddRecipe'
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
               <li>
                 <Link to="/dinner">Dinner</Link>
               </li>
+              <li>
+                <Link to="/add-recipe">Add Recipe</Link>
+              </li>
             </ul>
           </nav>
           <Switch>
@@ -37,6 +41,9 @@ function App() {
             </Route>
             <Route path="/dinner">
               <Dinner />
+            </Route>
+            <Route path="/add-recipe">
+              <AddRecipe />
             </Route>
             <Route path="/">
               <Home />
