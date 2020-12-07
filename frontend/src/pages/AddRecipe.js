@@ -1,14 +1,13 @@
-import React from 'react'
-import RecipeForm from '../components/RecipeForm'
+import React from "react";
+import RecipeForm from "../components/RecipeForm";
 
-function AddRecipe(){
-
-    return (
-        <div>
-            <h1>Add Recipe</h1>
-            <RecipeForm />
-        </div>
-    )
+function AddRecipe() {
+  return (
+    <div>
+      <h1>Add Recipe</h1>
+      <RecipeForm />
+    </div>
+  );
 }
 
-export default AddRecipe
+export default AddRecipe;
