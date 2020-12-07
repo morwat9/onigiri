@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function RecipeForm(props) {
+export function RecipeForm(props) {
   // The state 'size' and function createIngredientArray() create dynamic form (adding more fields for ingredients)
   const [size, setSize] = useState(1);
   function createIngredientArray(length) {
@@ -110,5 +110,3 @@ function RecipeForm(props) {
     </div>
   );
 }
-
-export default RecipeForm;

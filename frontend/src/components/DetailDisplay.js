@@ -1,6 +1,6 @@
 import React from "react";
 
-function DetailDisplay(props) {
+export function DetailDisplay(props) {
   const recipe = props.recipe;
 
   const d = recipe.createdAt.slice(0, 10);
@@ -27,5 +27,3 @@ function DetailDisplay(props) {
     </div>
   );
 }
-
-export default DetailDisplay;

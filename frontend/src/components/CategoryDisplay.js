@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-function CategoryDisplay(props) {
+export function CategoryDisplay(props) {
   return (
     <div>
       {
@@ -27,5 +26,3 @@ function CategoryDisplay(props) {
     </div>
   );
 }
-
-export default CategoryDisplay;

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import { hot } from "react-hot-loader";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import Breakfast from "./pages/Breakfast";
-import Lunch from "./pages/Lunch";
-import Dinner from "./pages/Dinner";
-import AddRecipe from "./pages/AddRecipe";
+import { Switch, Route, Link } from "react-router-dom";
+import {Home, Breakfast, Lunch, Dinner, AddRecipe} from './pages'
 
 function App() {
   return (

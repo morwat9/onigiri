@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CategoryDisplay from "../components/CategoryDisplay";
-import DetailDisplay from "../components/DetailDisplay";
+import { CategoryDisplay } from "../components/CategoryDisplay";
+import { DetailDisplay } from "../components/DetailDisplay";
 
-function Lunch() {
+export function Lunch() {
   const [recipes, setRecipes] = useState([]);
   const [detailView, setDetailView] = useState(null);
   useEffect(() => {
@@ -28,5 +28,3 @@ function Lunch() {
     return <CategoryDisplay recipes={recipes} setDetailView={setDetailView} />;
   }
 }
-
-export default Lunch;

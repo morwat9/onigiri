@@ -1,7 +1,7 @@
 import React from "react";
-import RecipeForm from "../components/RecipeForm";
+import { RecipeForm } from "../components/RecipeForm";
 
-function AddRecipe() {
+export function AddRecipe() {
   return (
     <div>
       <h1>Add Recipe</h1>
@@ -9,5 +9,3 @@ function AddRecipe() {
     </div>
   );
 }
-
-export default AddRecipe;
