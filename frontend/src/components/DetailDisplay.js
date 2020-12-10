@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function DetailDisplay(props) {
   const recipe = props.recipe;
@@ -24,6 +25,12 @@ export function DetailDisplay(props) {
         })}
       </ul>
       <p>{recipe.method}</p>
+      <Link to={{
+        pathname: "/edit-recipe",
+        state: {...recipe}
+      }}>
+        <button>Edit Recipe</button>
+      </Link>
     </div>
   );
 }

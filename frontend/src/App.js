@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { hot } from "react-hot-loader";
 import { Switch, Route, Link } from "react-router-dom";
-import {Home, Breakfast, Lunch, Dinner, AddRecipe} from './pages'
+import {Home, Breakfast, Lunch, Dinner, AddRecipe, EditRecipe} from './pages'
 
 function App() {
   return (
@@ -39,6 +39,9 @@ function App() {
           </Route>
           <Route path="/add-recipe">
             <AddRecipe />
+          </Route>
+          <Route path="/edit-recipe">
+            <EditRecipe />
           </Route>
           <Route path="/" exact>
             <Home />
