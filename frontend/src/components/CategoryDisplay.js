@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function CategoryDisplay(props) {
   return (
@@ -15,9 +16,14 @@ export function CategoryDisplay(props) {
                 Name: {recipe.name}
                 <br />
                 <div className="img" style={imageStyle}></div>
-                <button onClick={() => props.setDetailView(recipe._id)}>
-                  Go To Recipe
-                </button>
+                <Link
+                  to={{
+                    pathname: "/detail/" + recipe._id,
+                    state: { ...recipe },
+                  }}
+                >
+                  <button>Go To Recipe</button>
+                </Link>
               </li>
             );
           })}

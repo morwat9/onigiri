@@ -3,7 +3,7 @@ import axios from "axios";
 import { useLocation, Redirect } from "react-router-dom";
 
 export function RecipeForm(props) {
-  const [redirect, setRedirect] = useState(false)
+  const [redirectDestination, setRedirectDestination] = useState(null);
   // The state 'size' and function createIngredientArray() create dynamic form (adding more fields for ingredients)
   const [size, setSize] = useState(1);
   function createIngredientArray(length) {
@@ -36,44 +36,57 @@ export function RecipeForm(props) {
     setIngredients({ ...newIngredients });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const recipe = {...formData, ingredients: {...ingredients}}
-    if (editMode) {
-      axios
-        .post("http://localhost:8080/update-recipe", recipe)
-        .then((res) => {
-          setRedirect(true)
-        })
-        .catch((err) => console.log(err))
-    } else {
-      axios
-        .post("http://localhost:8080/add-recipe", recipe)
-        .then((res) => {
-          setRedirect(true)
-        })
-        .catch((err) => console.log(err));
-    }
+    const recipe = { ...formData, ingredients: { ...ingredients } };
+    try {
+      if (editMode) {
+        const result = await axios.post(
+          "http://localhost:8080/update-recipe",
+          recipe
+        );
+        setRedirectDestination({ ...result.data });
+      } else {
+        const result = await axios.post(
+          "http://localhost:8080/add-recipe",
+          recipe
+        );
+        setRedirectDestination({ ...result.data });
+      }
+    } catch (error) {}
   };
 
-  const redirectToCategory = (category) => {
+  const redirectToDetail = () => {
     return (
       <div>
-        <Redirect to={"/" + category}/>
+        <Redirect
+          to={{
+            pathname: "/detail/" + redirectDestination._id,
+            state: { ...redirectDestination },
+          }}
+        />
       </div>
-    )
-  }
+    );
+  };
 
   let data = useLocation();
 
   // If we have an incoming document to open in edit mode, prepopulate the fields
   if (data.state && editMode == false) {
-    let unwrap = ({ category, image, ingredients, method, name }) => ({
+    let unwrap = ({
       category,
       image,
       ingredients,
       method,
       name,
+      createdAt,
+    }) => ({
+      category,
+      image,
+      ingredients,
+      method,
+      name,
+      createdAt,
     });
 
     let activeItem = unwrap({ ...data.state });
@@ -104,7 +117,7 @@ export function RecipeForm(props) {
 
   return (
     <div>
-      { redirect === false ? null : redirectToCategory(formData.category)}
+      {!redirectDestination ? null : redirectToDetail()}
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Name"

@@ -15,16 +15,5 @@ export function Dinner() {
     }
   }, [recipes]);
 
-  if (detailView) {
-    return (
-      <DetailDisplay
-        recipe={recipes.find((obj) => {
-          return obj._id === detailView;
-        })}
-      />
-    );
-  }
-  if (!detailView) {
     return <CategoryDisplay recipes={recipes} setDetailView={setDetailView} />;
-  }
 }

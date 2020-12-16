@@ -60,9 +60,8 @@ exports.postRecipe = async (req, res) => {
       image: image,
       category: category,
     });
-    await recipe.save();
-    console.log("The Recipe " + req.body.name + " Has Been Added");
-    res.status(201).end();
+    const savedRecipe = await recipe.save();
+    res.status(201).send(savedRecipe);
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Validation failed" });
@@ -84,10 +83,11 @@ exports.updateRecipe = async (req, res) => {
   };
 
   try {
-    await Recipe.findByIdAndUpdate(recipeId, updatedRecipe, {
+    const savedRecipe = await Recipe.findByIdAndUpdate(recipeId, updatedRecipe, {
       timestamps: true,
+      new: true
     });
-    res.sendStatus(201).end();
+    res.status(201).send(savedRecipe);
   } catch (err) {
     // Fires if data isn't complete or parsing errors in the data
     console.log(err);
